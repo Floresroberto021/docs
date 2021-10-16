@@ -9,6 +9,7 @@ versions:
   fpt: '*'
   ghes: '*'
   ghae: '*'
+  ghec: '*'
 topics:
   - Repositories
 children:
@@ -17,7 +18,7 @@ children:
   - /viewing-your-repositorys-releases-and-tags
   - /linking-to-releases
   - /comparing-releases
+  - /automatically-generated-release-notes
   - /automation-for-release-forms-with-query-parameters
 shortTitle: Release projects
 ---
-

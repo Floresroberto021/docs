@@ -3,6 +3,7 @@ title: About discussions
 intro: 'Use discussions to ask and answer questions, share information, make announcements, and conduct or participate in a conversation about a project on {% data variables.product.product_name %}.'
 versions:
   fpt: '*'
+  ghec: '*'
 ---
 
 
@@ -53,7 +54,7 @@ You can share your feedback about {% data variables.product.prodname_discussions
 ## Further reading
 
 - "[About writing and formatting on {% data variables.product.prodname_dotcom %}](/github/writing-on-github/about-writing-and-formatting-on-github)"
-- "[Searching discussions](/github/searching-for-information-on-github/searching-discussions)"
+- "[Searching discussions](/search-github/searching-on-github/searching-discussions)"
 - "[About notifications](/github/managing-subscriptions-and-notifications-on-github/about-notifications)"
 - "[Moderating comments and conversations](/communities/moderating-comments-and-conversations)"
 - "[Maintaining your safety on {% data variables.product.prodname_dotcom %}](/communities/maintaining-your-safety-on-github)"

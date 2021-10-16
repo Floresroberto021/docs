@@ -24,6 +24,8 @@ When you enable {% data variables.product.prodname_GH_advanced_security %} for y
 When you enable {% data variables.product.prodname_GH_advanced_security %} for your enterprise, repository administrators in all organizations can enable the features. {% ifversion ghes = 3.0 %}For more information, see "[Managing security and analysis settings for your organization](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)" and "[Managing security and analysis settings for your repository](/github/administering-a-repository/managing-security-and-analysis-settings-for-your-repository)."{% endif %}
 {% endif %}
 
+For guidance on a phased deployment of GitHub Advanced Security, see "[Deploying GitHub Advanced Security in your enterprise](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise)."
+
 ## Prerequisites for enabling {% data variables.product.prodname_GH_advanced_security %}
 
 1. Upgrade your license for {% data variables.product.product_name %} to include {% data variables.product.prodname_GH_advanced_security %}.{% ifversion ghes > 3.0 %} For information about licensing, see "[About billing for {% data variables.product.prodname_GH_advanced_security %}](/billing/managing-billing-for-github-advanced-security/about-billing-for-github-advanced-security)."{% endif %}
@@ -33,7 +35,7 @@ When you enable {% data variables.product.prodname_GH_advanced_security %} for y
 
     - {% data variables.product.prodname_code_scanning_capc %}, see "[Configuring {% data variables.product.prodname_code_scanning %} for your appliance](/admin/advanced-security/configuring-code-scanning-for-your-appliance#prerequisites-for-code-scanning)."
     - {% data variables.product.prodname_secret_scanning_caps %}, see "[Configuring {% data variables.product.prodname_secret_scanning %} for your appliance](/admin/advanced-security/configuring-secret-scanning-for-your-appliance#prerequisites-for-secret-scanning)."{% endif %}
-    - {% data variables.product.prodname_dependabot %}, see "[Enabling alerts for vulnerable dependencies on {% data variables.product.prodname_ghe_server %}](/admin/configuration/managing-connections-between-github-enterprise-server-and-github-enterprise-cloud/enabling-alerts-for-vulnerable-dependencies-on-github-enterprise-server)." 
+    - {% data variables.product.prodname_dependabot %}, see "[Enabling the dependency graph and {% data variables.product.prodname_dependabot_alerts %} on your enterprise account](/admin/configuration/managing-connections-between-your-enterprise-accounts/enabling-the-dependency-graph-and-dependabot-alerts-on-your-enterprise-account)." 
 
 ## Checking whether your license includes {% data variables.product.prodname_GH_advanced_security %}
 
@@ -87,10 +89,14 @@ For example, you can enable any {% data variables.product.prodname_GH_advanced_s
     ```shell
     ghe-config app.secret-scanning.enabled true
     ```
-    - To enable {% data variables.product.prodname_dependabot %}, enter the following command.
-    ```shell
-    {% ifversion ghes > 3.1 %}ghe-config app.dependency-graph.enabled true{% else %}ghe-config app.github.dependency-graph-enabled true{% endif %}
+    - To enable {% data variables.product.prodname_dependabot %}, enter the following {% ifversion ghes > 3.1 %}command{% else %}commands{% endif %}.
+    {% ifversion ghes > 3.1 %}```shell
+    ghe-config app.dependency-graph.enabled true
     ```
+    {% else %}```shell
+    ghe-config app.github.dependency-graph-enabled true
+    ghe-config app.github.vulnerability-alerting-and-settings-enabled true
+    ```{% endif %}
 2. Optionally, disable features for {% data variables.product.prodname_GH_advanced_security %}.
 
     - To disable {% data variables.product.prodname_code_scanning %}, enter the following commands.
@@ -102,11 +108,14 @@ For example, you can enable any {% data variables.product.prodname_GH_advanced_s
     ```shell
     ghe-config app.secret-scanning.enabled false
     ```
-    - To disable {% data variables.product.prodname_dependabot %}, enter the following command.
-    ```shell
-    {% ifversion ghes > 3.1 %}ghe-config app.dependency-graph.enabled false{% else %}ghe-config app.github.dependency-graph-enabled false{% endif %}
+    - To disable {% data variables.product.prodname_dependabot %}, enter the following {% ifversion ghes > 3.1 %}command{% else %}commands{% endif %}.
+    {% ifversion ghes > 3.1 %}```shell
+    ghe-config app.dependency-graph.enabled false
     ```
-
+    {% else %}```shell
+    ghe-config app.github.dependency-graph-enabled false
+    ghe-config app.github.vulnerability-alerting-and-settings-enabled false
+    ```{% endif %}
 3. Apply the configuration.
     ```shell
     ghe-config-apply
